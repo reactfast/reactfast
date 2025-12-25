@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve", // or "preserve" if you prefer
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/components/*": ["src/components/*"],
+      "@/config/*": ["src/config/*"],
+      "@/buiderAssets/*": ["src/buiderAssets/*"],
+      "@/assets/*": ["src/assets/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/scaffold/*": ["src/scaffold/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx" // Add JS and JSX files to the include array
+  ],
+  "exclude": ["node_modules"]
+}

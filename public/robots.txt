@@ -1,0 +1,24 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /private
+Disallow: /account
+Disallow: /login
+Disallow: /register
+Disallow: /reset-password
+Disallow: /profile
+Disallow: /printed
+Disallow: /shop/cart
+Disallow: /site-create
+Disallow: /subscription-success
+Disallow: /register-qr
+Disallow: /discussions
+Disallow: /confirm-email
+Disallow: /cancel-sub-checkout
+
+# Host
+Host: https://jot.space
+
+# Sitemaps
+Sitemap: https://jot.space/sitemap.xml

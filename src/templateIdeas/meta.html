@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Jot Space</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Background SVG covers the full viewport */
+        .bg-aura {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+        }
+    </style>
+</head>
+
+<body class="relative bg-black text-white">
+    <!-- Dynamic Auroral Gradient Background -->
+    <svg class="bg-aura" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <!-- Radial gradient -->
+            <radialGradient id="auroraGradient" cx="50%" cy="50%" r="75%">
+                <stop offset="0%" stop-color="#0d0d2b" />
+                <stop offset="50%" stop-color="#1e3a8a" />
+                <stop offset="100%" stop-color="#9333ea" />
+            </radialGradient>
+            <!-- Animated turbulence filter -->
+            <filter id="auroraFilter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="3" result="noise">
+                    <animate attributeName="baseFrequency" values="0.005;0.015;0.005" dur="20s"
+                        repeatCount="indefinite" />
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="60" xChannelSelector="R"
+                    yChannelSelector="G" />
+                <feGaussianBlur stdDeviation="10" />
+            </filter>
+            <!-- Soft glow filter for subtle particle effects -->
+            <filter id="softGlow">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur" />
+                <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+        <!-- Base rectangle with the aurora gradient and distortion -->
+        <rect width="1200" height="800" fill="url(#auroraGradient)" filter="url(#auroraFilter)" />
+        <!-- Subtle animated glow particles -->
+        <g filter="url(#softGlow)">
+            <circle cx="300" cy="200" r="3" fill="rgba(255,255,255,0.3)">
+                <animate attributeName="cx" values="300;320;300" dur="6s" repeatCount="indefinite" />
+                <animate attributeName="cy" values="200;180;200" dur="6s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="900" cy="600" r="2" fill="rgba(255,255,255,0.25)">
+                <animate attributeName="cx" values="900;880;900" dur="8s" repeatCount="indefinite" />
+                <animate attributeName="cy" values="600;620;600" dur="8s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="600" cy="400" r="2.5" fill="rgba(255,255,255,0.2)">
+                <animate attributeName="cx" values="600;610;600" dur="10s" repeatCount="indefinite" />
+                <animate attributeName="cy" values="600;590;600" dur="10s" repeatCount="indefinite" />
+            </circle>
+        </g>
+    </svg>
+
+    <!-- Big Header -->
+    <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
+        <div class="bg-black/70 backdrop-blur-md rounded-xl p-6 w-full max-w-md text-center shadow-lg">
+            <!-- Profile Image -->
+            <img src="https://www.thispersondoesnotexist.com/" alt="Profile Picture"
+                class="w-32 h-32 rounded-full mx-auto border-4 border-white shadow-md" />
+            <!-- Name -->
+            <h1 class="mt-4 text-2xl font-bold">Humane Pearsonly</h1>
+            <!-- Short Bio -->
+            <p class="mt-2 text-gray-300 text-sm">
+                I'm a <strike>robot</strike> person who is big time doin' bizzy things. Hire me today/tomorrow, follow
+                me online/in-person.
+            </p>
+            <!-- Social Links -->
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="#" class="text-blue-300 hover:text-blue-400 transition-colors text-sm">Twitter</a>
+                <a href="#" class="text-blue-300 hover:text-blue-400 transition-colors text-sm">LinkedIn</a>
+                <a href="#" class="text-blue-300 hover:text-blue-400 transition-colors text-sm">GitHub</a>
+            </div>
+            <!-- Contact Information -->
+            <div class="mt-4 font-thin text-gray-300 text-sm">
+                <p>Phone: <span class="font-bold">(123) 456-7890</span></p>
+                <p>Email: <span class="font-bold">humane@tel-us.com</span></p>
+                <p>Address: <span class="font-bold">123 Business Road, Business City, TX 75070</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="relative z-10 flex flex-col items-center justify-center -mt-24 px-4 mb-12">
+        <div class="bg-white/30 backdrop-blur-sm rounded-xl p-6 w-full max-w-md shadow-lg">
+            <!-- Title -->
+            <h1 class="text-2xl font-thin">About the thing.</h1>
+            <!-- Short Bio -->
+            <p class="mt-2 text-gray-300 text-sm">
+                I first want to apologize to the fans.
+            </p>
+            <p class="mt-2 text-gray-300 text-sm">
+                Everyone else, go fuck yourself. Now that legal is out of the way, real talk, I'm the best telegraph
+                operator this side of the mississippi.
+            </p>
+            <p class="mt-2 text-gray-300 text-sm">
+                If you have a telegraph that needs operating, give me a bloody ring on the space box.
+            </p>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="relative z-10 flex flex-col items-center justify-center px-4 mb-12">
+        <div class="bg-white/30 backdrop-blur-sm rounded-xl p-6 w-full max-w-md lg:max-w-4xl shadow-lg mt-8">
+            <h2 class="text-2xl font-thin text-center">Services</h2>
+            <p class="mt-2 text-gray-300 text-sm text-center">
+                You tryna communicate in this day and/or age???
+            </p>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Service Card 1 -->
+                <div class="p-4 border border-white/20 rounded-lg">
+                    <h3 class="text-lg font-bold text-blue-300">
+                        Standard Telegraph Ops
+                    </h3>
+                    <p class="mt-1 text-gray-300 text-sm">
+                        Expert handling of "the big red button", in a way that eloquently conveys whatevrr you want to
+                        say.
+                    </p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="p-4 border border-white/20 rounded-lg">
+                    <h3 class="text-lg font-bold text-blue-300">
+                        Multi-Finger Support
+                    </h3>
+                    <p class="mt-1 text-gray-300 text-sm">
+                        All our operators have at least 8 functional, hot-swappable, fingers to keep messages moving.
+                    </p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="p-4 border border-white/20 rounded-lg">
+                    <h3 class="text-lg font-bold text-blue-300">
+                        Communication Consulting
+                    </h3>
+                    <p class="mt-1 text-gray-300 text-sm">
+                        Not sure what to say? Don't worry about that..
+                    </p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="p-4 border border-white/20 rounded-lg">
+                    <h3 class="text-lg font-bold text-blue-300">
+                        Training & Workshops
+                    </h3>
+                    <p class="mt-1 text-gray-300 text-sm">
+                        Looks fun right? Consider this your invitation to the world of bep bep beeep bep bep bep.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="relative z-10 flex flex-col items-center justify-center px-4 mb-12">
+        <div class="bg-white/30 backdrop-blur-sm rounded-xl p-6 w-full max-w-4xl shadow-lg mt-8">
+            <h2 class="text-2xl font-thin text-center">Gallery</h2>
+            <p class="mt-2 text-gray-300 text-sm text-center">
+                Check out some snapshots of our work.
+            </p>
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1544717301-9cdcb1f5940f?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Gallery image 1" class="    w-full h-48 object-cover rounded">
+                    <figcaption class="text-center text-xs mt-1 text-gray-300">Happy Clients</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://plus.unsplash.com/premium_photo-1667238624718-5c5d5deb6829?q=80&w=2737&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Gallery image 2" class="w-full h-48 object-cover rounded">
+                    <figcaption class="text-center text-xs mt-1 text-gray-300">High Technology</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://plus.unsplash.com/premium_photo-1661402199896-b7052a1257f0?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Gallery image 3" class="w-full h-48 object-cover rounded">
+                    <figcaption class="text-center text-xs mt-1 text-gray-300">Effective Communication</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1496070242169-b672c576566b?q=80&w=3143&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Gallery image 4" class="w-full h-48 object-cover rounded">
+                    <figcaption class="text-center text-xs mt-1 text-gray-300">Frog.</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://plus.unsplash.com/premium_photo-1667239397163-4aac21fd2a61?q=80&w=3165&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Gallery image 5" class="w-full h-48 object-cover rounded">
+                    <figcaption class="text-center text-xs mt-1 text-gray-300">Time Traveling Cheer</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1627936883562-8802dc458767?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Gallery image 6" class="w-full h-48 object-cover rounded">
+                    <figcaption class="text-center text-xs mt-1 text-gray-300">Modern Design</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Foot -->
+    <footer class="p-4 text-center text-gray-500 text-xs">
+        &copy; <span id="year"></span> Me. All rights reserved. Yep, all rights for me.
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

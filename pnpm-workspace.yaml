@@ -1,0 +1,5 @@
+overrides:
+  '@reactfast/forms': link:../../Library/pnpm/global/5/node_modules/@reactfast/forms
+  form: link:../../Library/pnpm/global/5/node_modules/@reactfast/form
+  formspnpm: link:../../Library/pnpm/global/5/node_modules/@reactfast/formspnpm
+  unlink: link:../../Library/pnpm/global/5/node_modules/unlink

@@ -1,0 +1,20 @@
+export const siteConfig = {
+  name: 'JotSpace',
+  description: 'A simple note-taking app',
+  logo: '/logo.svg',
+  email: '',
+  phone: '',
+  address: '',
+  social: {
+    twitter: 'https://twitter.com/',
+    github: '',
+    discord: '',
+    youtube: '',
+    facebook: '',
+    linkedin: '',
+    instagram: '',
+    threads: '',
+    pinterest: '',
+    whatsapp: '',
+  },
+}
