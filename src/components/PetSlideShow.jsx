@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import ReturnSection from '@/app/[slug]/returnSecs3'
 import { fonts } from '@/utils/fonts'
 import * as Pets from '@/scaffold/pet/template'
 import { supabaseClient as supabase } from '@/config/supabase-client'

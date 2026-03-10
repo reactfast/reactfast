@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import ReturnSection from '@/app/[slug]/returnSecs3'
 import * as Dark from '@/scaffold/Dark/template'
 import * as Eth from '@/scaffold/Eth/template'
 import * as Light from '@/scaffold/Light/template'

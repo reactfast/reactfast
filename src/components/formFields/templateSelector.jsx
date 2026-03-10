@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import IPhoneLayout from '@/components/iphone'
-import ReturnSection from '@/app/[slug]/returnSecs3'
 import * as Dark from '@/scaffold/Dark/template'
 import * as Eth from '@/scaffold/Eth/template'
 import * as Light from '@/scaffold/Light/template'
@@ -114,41 +113,7 @@ export default function TemplateSelector({ onChange }) {
           bgColor={theme?.bg_color}
           fontColor={theme?.font_color}
           bgImage={theme?.bg_image}
-        >
-          <div className={fonts[theme?.font_name] || ''}>
-            {preview?.map((section) => (
-              <ReturnSection
-                key={section.id}
-                sec={section.sec_type.name}
-                section={section}
-                content={section.definition}
-                colors={[
-                  theme.primary,
-                  theme.secondary,
-                  theme.tertiary,
-                  theme.quaternary,
-                  theme.bg_color,
-                  theme.foreground_color,
-                ]}
-                theme={section.sec_type.folder_name}
-                kind={section.sec_type.type}
-                num={section.sec_type.num}
-                component_name={section.sec_type.component_name}
-              />
-            ))}
-
-            {preview?.length === 0 && (
-              <div className="p-4">
-                <h1 className="text-center text-xl font-bold">
-                  No Sections on This Page
-                </h1>
-                <p className="mt-4 text-center">
-                  Click the Plus Button to Add Your First Section
-                </p>
-              </div>
-            )}
-          </div>
-        </IPhoneLayout>
+        ></IPhoneLayout>
       </div>
     </div>
   )
