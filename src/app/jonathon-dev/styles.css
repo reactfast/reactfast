@@ -1,9 +1,0 @@
-/* Add to globals.css or a <style jsx global> */
-.scrollbar-none::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
-}
-
-.scrollbar-none {
-  -ms-overflow-style: none; /* IE & Edge */
-  scrollbar-width: none; /* Firefox */
-}
