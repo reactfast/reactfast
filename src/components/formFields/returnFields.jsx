@@ -269,15 +269,6 @@ export function ReturnFieldsV2({ field, onChange, value, theme }) {
           theme={mergedTheme}
         />
       )
-    case 'rating':
-      return (
-        <Inputs.Rating
-          field={field}
-          value={value}
-          onChange={onChange}
-          theme={mergedTheme}
-        />
-      )
     case 'scale':
       return (
         <Inputs.Scale
