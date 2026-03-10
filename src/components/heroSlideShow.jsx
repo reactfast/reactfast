@@ -55,38 +55,6 @@ export default function SimpleRotatingTemplatePreview() {
         backgroundRepeat: 'repeat',
         fontFamily: fonts[theme?.font_name] || 'inherit',
       }}
-    >
-      {preview.length > 0 ? (
-        preview.map((section) => (
-          <ReturnSection
-            key={section.id}
-            sec={section.sec_type.name}
-            section={section}
-            content={section.definition}
-            colors={[
-              theme.primary,
-              theme.secondary,
-              theme.tertiary,
-              theme.quaternary,
-              theme.bg_color,
-              theme.foreground_color,
-            ]}
-            theme={section.sec_type.folder_name}
-            kind={section.sec_type.type}
-            num={section.sec_type.num}
-            component_name={section.sec_type.component_name}
-          />
-        ))
-      ) : (
-        <div className="p-4">
-          <h1 className="text-center text-xl font-bold">
-            No Sections on This Page
-          </h1>
-          <p className="mt-4 text-center">
-            Click the Plus Button to Add Your First Section
-          </p>
-        </div>
-      )}
-    </div>
+    ></div>
   )
 }
