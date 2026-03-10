@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE,
-)
+import { supabaseClient as supabase } from '@/config/supabase-client'
 
 export async function GET(request) {
   try {
@@ -16,13 +11,15 @@ export async function GET(request) {
       // Get specific form with all related data
       const { data, error } = await supabase
         .from('forms')
-        .select(`
+        .select(
+          `
           *,
           form_steps(
             *,
             form_step_fields(*)
           )
-        `)
+        `,
+        )
         .eq('id', formId)
         .single()
 
@@ -34,11 +31,13 @@ export async function GET(request) {
       // Get all forms for a user
       const { data, error } = await supabase
         .from('forms')
-        .select(`
+        .select(
+          `
           *,
           form_steps(count),
           form_submissions(count)
-        `)
+        `,
+        )
         .eq('author', userId)
         .order('created_at', { ascending: false })
 
@@ -69,9 +68,9 @@ export async function POST(request) {
 
     // Create steps if provided
     if (steps && steps.length > 0) {
-      const stepsWithFormId = steps.map(step => ({
+      const stepsWithFormId = steps.map((step) => ({
         ...step,
-        form_id: formData.id
+        form_id: formData.id,
       }))
 
       const { error: stepsError } = await supabase
@@ -117,10 +116,7 @@ export async function DELETE(request) {
       return NextResponse.json({ error: 'Form ID required' }, { status: 400 })
     }
 
-    const { error } = await supabase
-      .from('forms')
-      .delete()
-      .eq('id', formId)
+    const { error } = await supabase.from('forms').delete().eq('id', formId)
 
     if (error) throw error
     return NextResponse.json({ success: true })

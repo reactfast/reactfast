@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE,
-)
+import { supabaseClient as supabase } from '@/config/supabase-client'
 
 export async function GET(request) {
   try {
@@ -32,7 +27,7 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const body = await request.json()
-    
+
     const { data, error } = await supabase
       .from('form_step_fields')
       .insert([body])
@@ -95,15 +90,15 @@ export async function PATCH(request) {
     const body = await request.json()
     const { fields } = body // Array of { id, field_order }
 
-    const promises = fields.map(field => 
+    const promises = fields.map((field) =>
       supabase
         .from('form_step_fields')
         .update({ field_order: field.field_order })
-        .eq('id', field.id)
+        .eq('id', field.id),
     )
 
     const results = await Promise.all(promises)
-    const hasError = results.some(r => r.error)
+    const hasError = results.some((r) => r.error)
 
     if (hasError) {
       throw new Error('Failed to update field orders')

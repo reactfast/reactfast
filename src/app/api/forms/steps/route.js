@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE,
-)
+import { supabaseClient as supabase } from '@/config/supabase-client'
 
 export async function GET(request) {
   try {
@@ -16,10 +11,12 @@ export async function GET(request) {
       // Get specific step with fields
       const { data, error } = await supabase
         .from('form_steps')
-        .select(`
+        .select(
+          `
           *,
           form_step_fields(*)
-        `)
+        `,
+        )
         .eq('id', stepId)
         .single()
 
@@ -31,10 +28,12 @@ export async function GET(request) {
       // Get all steps for a form
       const { data, error } = await supabase
         .from('form_steps')
-        .select(`
+        .select(
+          `
           *,
           form_step_fields(*)
-        `)
+        `,
+        )
         .eq('form_id', formId)
         .order('step_order', { ascending: true })
 
@@ -65,9 +64,9 @@ export async function POST(request) {
 
     // Create fields if provided
     if (fields && fields.length > 0) {
-      const fieldsWithStepId = fields.map(field => ({
+      const fieldsWithStepId = fields.map((field) => ({
         ...field,
-        step_id: stepData.id
+        step_id: stepData.id,
       }))
 
       const { error: fieldsError } = await supabase

@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE,
-)
+import { supabaseClient as supabase } from '@/config/supabase-client'
 
 export async function POST(request) {
   try {
@@ -23,16 +18,21 @@ export async function POST(request) {
     }
 
     if (!form.is_public || !form.is_active) {
-      return NextResponse.json({ error: 'Form is not accepting submissions' }, { status: 403 })
+      return NextResponse.json(
+        { error: 'Form is not accepting submissions' },
+        { status: 403 },
+      )
     }
 
     // Get user ID if authenticated
     const authHeader = request.headers.get('authorization')
     let userId = null
-    
+
     if (authHeader) {
       const token = authHeader.replace('Bearer ', '')
-      const { data: { user } } = await supabase.auth.getUser(token)
+      const {
+        data: { user },
+      } = await supabase.auth.getUser(token)
       userId = user?.id
     }
 
@@ -43,11 +43,13 @@ export async function POST(request) {
       submission_data: data,
       metadata: {
         ...metadata,
-        ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
+        ip:
+          request.headers.get('x-forwarded-for') ||
+          request.headers.get('x-real-ip'),
         userAgent: request.headers.get('user-agent'),
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       },
-      status: 'completed'
+      status: 'completed',
     }
 
     const { data: submissionData, error: submissionError } = await supabase
@@ -58,13 +60,16 @@ export async function POST(request) {
 
     if (submissionError) {
       console.error('Error creating submission:', submissionError)
-      return NextResponse.json({ error: 'Failed to submit form' }, { status: 500 })
+      return NextResponse.json(
+        { error: 'Failed to submit form' },
+        { status: 500 },
+      )
     }
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       submissionId: submissionData.id,
-      message: 'Form submitted successfully' 
+      message: 'Form submitted successfully',
     })
   } catch (error) {
     console.error('Error in POST /api/forms/submit:', error)
@@ -94,12 +99,17 @@ export async function GET(request) {
       // Get all submissions for a form (requires auth)
       const authHeader = request.headers.get('authorization')
       if (!authHeader) {
-        return NextResponse.json({ error: 'Authentication required' }, { status: 401 })
+        return NextResponse.json(
+          { error: 'Authentication required' },
+          { status: 401 },
+        )
       }
 
       const token = authHeader.replace('Bearer ', '')
-      const { data: { user } } = await supabase.auth.getUser(token)
-      
+      const {
+        data: { user },
+      } = await supabase.auth.getUser(token)
+
       if (!user) {
         return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
       }
