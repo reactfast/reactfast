@@ -1,5 +1,6 @@
 import { Inter, Roboto } from 'next/font/google'
 import ClientWrapper from '@/components/clientWrapper'
+import LayoutWrapper from './layoutWrapper'
 
 import './global.css'
 import '../styles/tailwind.css'
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
         className={`flex h-full flex-col ${roboto.variable} ${inter.variable}`}
       >
         <ClientWrapper>
+          <LayoutWrapper />
           <main>{children}</main>
         </ClientWrapper>
       </body>

@@ -33,7 +33,7 @@ import { getUser } from '@/hooks/Auth'
 import { getUserSubscription } from '@/helpers/subs'
 import CopyButton from './copy'
 import { fonts } from '@/utils/fonts'
-import GuidedTour from './joyride'
+
 import SiteSettingsForm from './themeDrawer'
 import Loading from '../../loading'
 import ListItem from './listItem'
@@ -745,11 +745,7 @@ export default function pageEdit({ params }) {
             </div> */}
           </div>
 
-          {!loading && joyride && (
-            <div className="hidden md:block">
-              <GuidedTour />
-            </div>
-          )}
+          {!loading && joyride && <div className="hidden md:block"></div>}
 
           {/* Drawer on the left: for Creating / Editing a Section */}
           <ContextMenu

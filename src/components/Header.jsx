@@ -18,25 +18,30 @@ import { getUser } from '@/hooks/Auth'
 
 const navigation = [
   {
-    name: 'Space',
+    name: 'Home',
     href: '/',
   },
   {
-    name: 'Teams',
-    href: '/about/teams',
+    name: 'Forms',
+    href: '/forms',
   },
   {
-    name: 'Unlimited',
+    name: 'Nav',
     href: '/about/enterprise',
   },
   {
-    name: 'Pricing',
+    name: 'Tabs',
     href: '/pricing',
   },
   {
-    name: 'Shop',
+    name: 'Index-Views',
     href: '/shop/category/all',
   },
+  {
+    name: 'Validations',
+    href: '/shop/category/all',
+  },
+  
 ]
 
 function MobileNavLink({ href, children }) {

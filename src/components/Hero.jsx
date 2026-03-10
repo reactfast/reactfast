@@ -1,86 +1,102 @@
-import Image from 'next/image'
+'use client'
 
+import clsx from 'clsx'
 import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import logoLaravel from '@/images/logos/laravel.svg'
-import logoMirage from '@/images/logos/mirage.svg'
-import logoStatamic from '@/images/logos/statamic.svg'
-import logoStaticKit from '@/images/logos/statickit.svg'
-import logoTransistor from '@/images/logos/transistor.svg'
-import logoTuple from '@/images/logos/tuple.svg'
 
-export function Hero() {
+const code = `import { useState } from "react";
+import { FastForm, createFormHandler } from "@reactfast/forms";
+
+const fields = [
+  { name: "firstName", title: "First Name", type: "string", width: 50 },
+  { name: "lastName", title: "Last Name", type: "string", width: 50 },
+  { name: "email", title: "Email", type: "email", width: 100 },
+  { name: "subscribe", title: "Subscribe?", type: "boolean", width: 100 },
+];
+
+export default function App() {
+  const [formData, setFormData] = useState({});
+
+  const handleChange = createFormHandler({
+    fields,
+    setState: setFormData,
+  });
+
   return (
-    <Container className="pb-16 pt-20 text-center lg:pt-32">
-      <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
-        Networking{' '}
-        <span className="relative whitespace-nowrap text-blue-600">
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 418 42"
-            className="absolute left-0 top-2/3 h-[0.58em] w-full fill-blue-300/70"
-            preserveAspectRatio="none"
-          >
-            <path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z" />
-          </svg>
-          <span className="relative">made simple</span>
-        </span>{' '}
-        for small businesses.
-      </h1>
-      <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
-        Most bookkeeping software is accurate, but hard to use. We make the
-        opposite trade-off, and hope you don’t get audited.
-      </p>
-      <div className="mt-10 flex justify-center gap-x-6">
-        <Button href="/register">Get 6 months free</Button>
-        <Button
-          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-          variant="outline"
-        >
-          <svg
-            aria-hidden="true"
-            className="h-3 w-3 flex-none fill-blue-600 group-active:fill-current"
-          >
-            <path d="m9.997 6.91-7.583 3.447A1 1 0 0 1 1 9.447V2.553a1 1 0 0 1 1.414-.91L9.997 5.09c.782.355.782 1.465 0 1.82Z" />
-          </svg>
-          <span className="ml-3">Watch video</span>
-        </Button>
-      </div>
-      <div className="mt-36 lg:mt-44">
-        <p className="font-display text-base text-slate-900">
-          Trusted by these six companies so far
-        </p>
-        <ul
-          role="list"
-          className="mt-8 flex items-center justify-center gap-x-8 sm:flex-col sm:gap-x-0 sm:gap-y-10 xl:flex-row xl:gap-x-12 xl:gap-y-0"
-        >
-          {[
-            [
-              { name: 'Transistor', logo: logoTransistor },
-              { name: 'Tuple', logo: logoTuple },
-              { name: 'StaticKit', logo: logoStaticKit },
-            ],
-            [
-              { name: 'Mirage', logo: logoMirage },
-              { name: 'Laravel', logo: logoLaravel },
-              { name: 'Statamic', logo: logoStatamic },
-            ],
-          ].map((group, groupIndex) => (
-            <li key={groupIndex}>
-              <ul
-                role="list"
-                className="flex flex-col items-center gap-y-8 sm:flex-row sm:gap-x-12 sm:gap-y-0"
+    <FastForm
+      fields={fields}
+      onChange={handleChange}
+      formData={formData}
+    />
+  );
+}`
+
+const tabs = [
+  { name: 'App.jsx', isActive: true },
+  { name: 'package.json', isActive: false },
+]
+
+export default function Hero() {
+  return (
+    <div className="bg-slate-900 dark:pb-20 dark:pt-20">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-x-16 gap-y-12 lg:grid-cols-2">
+          {/* Left Column: Title and buttons */}
+          <div className="flex flex-col justify-center md:text-center lg:text-left">
+            <h1 className="bg-gradient-to-r from-indigo-400 via-sky-400 to-indigo-400 bg-clip-text text-6xl font-extrabold tracking-tight text-transparent">
+              Build forms that just work.
+            </h1>
+            <p className="mt-4 text-2xl text-slate-300">
+              Dynamic React forms powered by JSON schemas, modifiers, and
+              subforms. Create complex, adaptive form systems without
+              boilerplate.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
+              <Button href="/docs/quickstart">Get started</Button>
+              <Button
+                href="https://github.com/reactfast/forms"
+                variant="secondary"
               >
-                {group.map((company) => (
-                  <li key={company.name} className="flex">
-                    <Image src={company.logo} alt={company.name} unoptimized />
-                  </li>
+                View on GitHub
+              </Button>
+            </div>
+          </div>
+
+          {/* Right Column: Code */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="w-full max-w-xl rounded-2xl bg-[#0A101F]/90 p-6 ring-1 ring-white/10 backdrop-blur-sm">
+              {/* Tabs */}
+              <div className="mb-4 flex space-x-2 text-xs">
+                {tabs.map((tab) => (
+                  <div
+                    key={tab.name}
+                    className={clsx(
+                      'flex h-6 items-center rounded-full px-2.5',
+                      tab.isActive
+                        ? 'bg-sky-500/20 font-medium text-sky-300'
+                        : 'text-slate-500',
+                    )}
+                  >
+                    {tab.name}
+                  </div>
                 ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
+              </div>
+
+              {/* Code with line numbers */}
+              <div className="flex overflow-x-auto font-mono text-sm">
+                {/* Line numbers */}
+                <div className="select-none border-r border-slate-600 pr-4 text-right text-slate-500">
+                  {code.split('\n').map((_, i) => (
+                    <div key={i}>{(i + 1).toString().padStart(2, '0')}</div>
+                  ))}
+                </div>
+
+                {/* Code */}
+                <pre className="whitespace-pre pl-4 text-slate-200">{code}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </Container>
+    </div>
   )
 }

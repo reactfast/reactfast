@@ -1,41 +1,49 @@
 {
   "compilerOptions": {
+    /* Core */
+    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "noEmit": true,
-    "incremental": true,
     "module": "esnext",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve", // or "preserve" if you prefer
+    "noEmit": true,
+    /* JSX */
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "checkJs": false,
+    /* Next.js */
     "plugins": [
       {
         "name": "next"
       }
     ],
+    /* Interop */
+    "esModuleInterop": true,
+    /* Type Safety */
+    "strict": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    /* Absolute imports */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@/styles/*": ["src/styles/*"],
-      "@/components/*": ["src/components/*"],
-      "@/config/*": ["src/config/*"],
-      "@/buiderAssets/*": ["src/buiderAssets/*"],
-      "@/assets/*": ["src/assets/*"],
-      "@/utils/*": ["src/utils/*"],
-      "@/scaffold/*": ["src/scaffold/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@ui/*": ["./src/ui/*"],
+      "@forms/*": ["./src/forms/*"],
+      "@lib/*": ["./src/lib/*"]
     }
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx" // Add JS and JSX files to the include array
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
