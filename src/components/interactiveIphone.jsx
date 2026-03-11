@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useAnimation } from 'framer-motion'
-import RotatingTemplatePreviewShell from '@/components/heroSlideShow'
 
 export const InteractivePreviewCard = () => {
   const containerRef = useRef(null)

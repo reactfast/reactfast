@@ -34,7 +34,6 @@ import {
   DevicePhoneMobileIcon,
 } from '@heroicons/react/24/outline'
 import QRCodeCanvas from '@/components/qrv2'
-import RotatingTemplatePreviewShell from '@/components/heroSlideShow'
 import { InteractivePreviewCard } from '@/components/interactiveIphone'
 import DynamicHeader from '@/components/headerNav2'
 
